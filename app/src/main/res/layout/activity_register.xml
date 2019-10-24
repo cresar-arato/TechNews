@@ -80,7 +80,7 @@
         android:layout_below="@+id/regPassword2"
         android:background="@drawable/btn_default"
         android:layout_centerInParent="true"
-        android:text="Login"
+        android:text="Register"
         android:textColor="@android:color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
