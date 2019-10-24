@@ -1,0 +1,91 @@
+{
+  "project_info": {
+    "project_number": "418028295873",
+    "firebase_url": "https://tips-tech.firebaseio.com",
+    "project_id": "tips-tech",
+    "storage_bucket": "tips-tech.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418028295873:android:ad4e41dbcdae1f66e62640",
+        "android_client_info": {
+          "package_name": "id.univmulia.technews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418028295873-55bvqbovutpnp2q91nk7f4kq2ghkcpbh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.univmulia.technews",
+            "certificate_hash": "34315d4092c758905a692389b54e73c6153c540a"
+          }
+        },
+        {
+          "client_id": "418028295873-ek14hg8a1r4b49dgt2v9vjtlmb87ecsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
+        },
+        {
+          "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418028295873-ek14hg8a1r4b49dgt2v9vjtlmb87ecsa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418028295873:android:6880a191fd2f7ab5e62640",
+        "android_client_info": {
+          "package_name": "id.univmulia.tipstech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "418028295873-pbh2btqf7q3t4ekv8l5vf314e59fpdfu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.univmulia.tipstech",
+            "certificate_hash": "546c8173d9529a5da5899878ecc9110646120e0f"
+          }
+        },
+        {
+          "client_id": "418028295873-ek14hg8a1r4b49dgt2v9vjtlmb87ecsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
+        },
+        {
+          "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "418028295873-ek14hg8a1r4b49dgt2v9vjtlmb87ecsa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
