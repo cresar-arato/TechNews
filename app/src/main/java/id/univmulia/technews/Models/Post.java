@@ -5,7 +5,7 @@ import com.google.firebase.database.ServerValue;
 
 public class Post {
 
-    private  String Key;
+    private String Key;
     private String title;
     private String description;
     private String picture;

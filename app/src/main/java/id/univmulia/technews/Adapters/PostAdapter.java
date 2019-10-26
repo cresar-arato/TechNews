@@ -1,6 +1,7 @@
 package id.univmulia.technews.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import id.univmulia.technews.Activities.DetailPostActivity;
 import id.univmulia.technews.Models.Post;
 import id.univmulia.technews.R;
 
@@ -65,6 +67,23 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
             TvTitle = itemView.findViewById(R.id.posted_title);
             imgPost = itemView.findViewById(R.id.posted_img);
             imgPostProfile = itemView.findViewById(R.id.posted_img_profile);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent postDetailAct = new Intent(mContext, DetailPostActivity.class);
+                    int position = getAdapterPosition();
+
+                    postDetailAct.putExtra("Key",mData.get(position).getKey());
+                    postDetailAct.putExtra("title",mData.get(position).getTitle());
+                    postDetailAct.putExtra("picture",mData.get(position).getPicture());
+                    postDetailAct.putExtra("description",mData.get(position).getDescription());
+                    postDetailAct.putExtra("userPhoto",mData.get(position).getUserPhoto());
+                    long timeStamp = (long) mData.get(position).getTimeStamp();
+                    postDetailAct.putExtra("postDate",timeStamp);
+                    mContext.startActivity(postDetailAct);
+                }
+            });
 
         }
     }

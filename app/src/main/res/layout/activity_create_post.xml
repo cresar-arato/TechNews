@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_oren"
+    android:background="@drawable/bg_motif_abuabu"
     tools:context=".Activities.CreatePostActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="30dp">
+        android:layout_margin="30dp"
+        android:outlineAmbientShadowColor="@color/colorPrimary">
         <TextView
             android:id="@+id/txtUploadImage"
             android:layout_width="match_parent"
