@@ -6,13 +6,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import id.univmulia.technews.Adapters.PostAdapter;
 import id.univmulia.technews.Models.Post;
@@ -20,52 +23,43 @@ import id.univmulia.technews.R;
 
 public class PostActivity extends AppCompatActivity  {
 
-    private DatabaseReference databaseRef;
-    private RecyclerView rvPost;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<Post> listPost;
+    private RecyclerView mRecyclerView;
+    private FirebaseDatabase firebaseDatabase;
+    private DatabaseReference databaseReference;
+    private List<Post> mPost;
+    private PostAdapter mAdapter;
 
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
-        //inisiasi RecyclerView dan Komponen
-        rvPost = findViewById(R.id.rv_postingan);
-        rvPost.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
-        rvPost.setLayoutManager(layoutManager);
+        mRecyclerView = findViewById(R.id.rv_postingan);
+        mRecyclerView.setHasFixedSize(true);
 
-        //mengambil data postingan dari firebase database
-        databaseRef.child("postingan").addValueEventListener(new ValueEventListener() {
+        //set layout ke linear layout
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mPost=new ArrayList<>();
+
+        //kirim kueri ke firebasedatabase
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference("Postingan");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //ada data baru, masukkan ke Arraylist
-                listPost = new ArrayList<>();
-                for(DataSnapshot notePostSnapshot : dataSnapshot.getChildren()){
-                    /**
-                     * Mapping data pada DataSnapshot ke dalam object Barang
-                     * Dan juga menyimpan primary key pada object Barang
-                     * untuk keperluan Edit dan Delete data
-                     */
-                    Post postingan = notePostSnapshot.getValue(Post.class);
-                    postingan.setKey(notePostSnapshot.getKey());
+                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
 
-                    listPost.add(postingan);
+                    Post post = postSnapshot.getValue(Post.class);
+                    mPost.add(post);
                 }
-
-                /**
-                 * Inisialisasi adapter dan data barang dalam bentuk ArrayList
-                 * dan mengeset Adapter ke dalam RecyclerView
-                 */
-                adapter = new PostAdapter(PostActivity.this, listPost);
-                rvPost.setAdapter(adapter);
+                mAdapter = new PostAdapter(PostActivity.this,mPost);
+                mRecyclerView.setAdapter(mAdapter);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Toast.makeText(PostActivity.this,databaseError.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
     }

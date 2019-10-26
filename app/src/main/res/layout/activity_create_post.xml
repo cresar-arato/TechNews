@@ -85,7 +85,7 @@
             android:layout_marginRight="10dp"
             android:layout_marginBottom="20dp"
             android:text="View Gallery"
-            android:id="@+id/viewGallery"
+            android:id="@+id/viewPost"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

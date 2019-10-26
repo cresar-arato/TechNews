@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -35,6 +36,7 @@ public class CreatePostActivity extends AppCompatActivity {
     private static final int CHOOSE_IMAGE = 1;
     ImageView ImgPost;
     EditText PostTitle,PostDescription;
+    TextView ViewPostingan;
     private Uri pickedImgUri = null;
     Button BtnPost;
     FirebaseAuth mAuth;
@@ -42,7 +44,7 @@ public class CreatePostActivity extends AppCompatActivity {
     ProgressBar PostProgress;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
@@ -50,12 +52,14 @@ public class CreatePostActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
+
         //deklarasi
         ImgPost = findViewById(R.id.imgPost);
         PostTitle = findViewById(R.id.postTitle);
         PostDescription = findViewById(R.id.postDescription);
         BtnPost = findViewById(R.id.btnUploadPost);
         PostProgress = findViewById(R.id.postProgress);
+        ViewPostingan = findViewById(R.id.viewPost);
 
         //klik untuk buka gallery
         ImgPost.setOnClickListener(new View.OnClickListener() {
@@ -121,6 +125,15 @@ public class CreatePostActivity extends AppCompatActivity {
                    showMessage("Cek Semua Field Harus Terisi dan Gambar telah terpilih");
 
                }
+            }
+        });
+
+        //menuju Post Activity
+        ViewPostingan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent ViewPostActIntent = new Intent(getApplicationContext(),PostActivity.class);
+                startActivity(ViewPostActIntent);
             }
         });
     }

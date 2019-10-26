@@ -22,8 +22,8 @@ import id.univmulia.technews.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> {
 
-    Context mContext;
-    List<Post> mData;
+    private Context mContext;
+    private List<Post> mData;
 
     public PostAdapter(Context mContext, List<Post> mData) {
         this.mContext = mContext;
@@ -44,7 +44,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
 
         holder.TvTitle.setText(mData.get(position).getTitle());
         Glide.with(mContext).load(mData.get(position).getPicture()).into(holder.imgPost);
-        Glide.with(mContext).load(mData.get(position).getPicture()).into(holder.imgPostProfile);
+        Glide.with(mContext).load(mData.get(position).getUserPhoto()).circleCrop().into(holder.imgPostProfile);
 
     }
 
