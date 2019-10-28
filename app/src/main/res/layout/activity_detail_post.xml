@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_motif_abuabu"
     tools:context=".Activities.DetailPostActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -33,7 +34,7 @@
             android:layout_marginBottom="16dp"
             android:lineSpacingExtra="4dp"
             android:text="TextView"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -66,6 +67,7 @@
             android:layout_marginTop="8dp"
             android:text=" 01 Feb 2019 | by Heru Cesarianto"
             android:textSize="12sp"
+            android:textColor="@android:color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view" />
 
@@ -81,8 +83,19 @@
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
-            android:textColor="#363636"
-            android:lineSpacingExtra="4dp"
+            android:id="@+id/post_detail_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="Nama User"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/post_detail_date_name"
+            app:layout_constraintEnd_toStartOf="@+id/post_detail_user_img"
+            app:layout_constraintTop_toTopOf="@+id/post_detail_date_name" />
+
+        <TextView
             android:id="@+id/post_detail_desc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -91,11 +104,10 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
+            android:justificationMode="inter_word"
+            android:lineSpacingExtra="4dp"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeMaxTextSize="100sp"
-            app:autoSizeStepGranularity="2sp"
+            android:textColor="#c9c9c9"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_detail_date_name" />

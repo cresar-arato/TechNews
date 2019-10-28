@@ -65,7 +65,7 @@
             android:background="@drawable/btn_default"
             android:layout_centerInParent="true"
             android:layout_marginBottom="30dp"
-            android:text="Buat Post"
+            android:text="Postingan"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,6 +49,10 @@ public class CreatePostActivity extends AppCompatActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
+
+        //set statusbar jadi transparan ke postingan kita
+        Window w = getWindow();
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         //firebase
         mAuth = FirebaseAuth.getInstance();
@@ -102,6 +108,7 @@ public class CreatePostActivity extends AppCompatActivity {
                                                         PostDescription.getText().toString(),
                                                         imageDownLink,
                                                         currentUser.getUid(),
+                                                        currentUser.getDisplayName(),
                                                         currentUser.getPhotoUrl().toString());
 
                                    //tambahkan postingan
@@ -153,8 +160,8 @@ public class CreatePostActivity extends AppCompatActivity {
                 showMessage("Postingan Berhasil di Tambahkan");
                 BtnPost.setVisibility(View.VISIBLE);
                 PostProgress.setVisibility(View.INVISIBLE);
-                Intent HomePostActIntent = new Intent(getApplicationContext(),HomeActivity.class);
-                startActivity(HomePostActIntent);
+                Intent ViewPostActIntent = new Intent(getApplicationContext(),PostActivity.class);
+                startActivity(ViewPostActIntent);
             }
         });
     }

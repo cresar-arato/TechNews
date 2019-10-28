@@ -1,11 +1,14 @@
 package id.univmulia.technews.Adapters;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,23 +16,29 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.FirebaseStorage;
 
 import org.w3c.dom.Text;
 
 import java.util.List;
 
+import id.univmulia.technews.Activities.CreatePostActivity;
 import id.univmulia.technews.Activities.DetailPostActivity;
+import id.univmulia.technews.Activities.PostActivity;
 import id.univmulia.technews.Models.Post;
 import id.univmulia.technews.R;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> {
 
+    private PostActivity listener;
     private Context mContext;
     private List<Post> mData;
 
     public PostAdapter(Context mContext, List<Post> mData) {
         this.mContext = mContext;
         this.mData = mData;
+        this.listener =(PostActivity) mContext;
     }
 
     @NonNull
@@ -49,6 +58,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
         Glide.with(mContext).load(mData.get(position).getUserPhoto()).circleCrop().into(holder.imgPostProfile);
 
     }
+
 
     @Override
     public int getItemCount() {
@@ -78,13 +88,13 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
                     postDetailAct.putExtra("title",mData.get(position).getTitle());
                     postDetailAct.putExtra("picture",mData.get(position).getPicture());
                     postDetailAct.putExtra("description",mData.get(position).getDescription());
+                    postDetailAct.putExtra("userName",mData.get(position).getUserName());
                     postDetailAct.putExtra("userPhoto",mData.get(position).getUserPhoto());
                     long timeStamp = (long) mData.get(position).getTimeStamp();
                     postDetailAct.putExtra("postDate",timeStamp);
                     mContext.startActivity(postDetailAct);
                 }
             });
-
         }
     }
 }

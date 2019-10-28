@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -20,8 +21,10 @@ import id.univmulia.technews.R;
 
 public class DetailPostActivity extends AppCompatActivity {
 
+    FirebaseUser currentUser;
+
     ImageView imgPost,imgUserPost;
-    TextView txtPostDesc, txtPostDateName, txtPostTitle;
+    TextView txtPostDesc, txtPostDateName, txtPostTitle, txtPostUserName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,15 +35,10 @@ public class DetailPostActivity extends AppCompatActivity {
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
-        /*View decorView = getWindow().getDecorView();
-
-        // Hide the status bar.
-        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);*/
-
         //deklarasi
         imgPost = findViewById(R.id.post_detail_image);
         imgUserPost = findViewById(R.id.post_detail_user_img);
+        txtPostUserName = findViewById(R.id.post_detail_username);
         txtPostTitle = findViewById(R.id.post_detail_title);
         txtPostDateName = findViewById(R.id.post_detail_date_name);
         txtPostDesc = findViewById(R.id.post_detail_desc);
@@ -57,11 +55,15 @@ public class DetailPostActivity extends AppCompatActivity {
         String userpostImage = getIntent().getExtras().getString("userPhoto");
         Glide.with(this).load(userpostImage).circleCrop().into(imgUserPost);
 
+        String postUsername = getIntent().getExtras().getString("userName");
+        txtPostUserName.setText(postUsername);
+
         String postDescription = getIntent().getExtras().getString("description");
         txtPostDesc.setText(postDescription);
 
         String date = timestampToString(getIntent().getExtras().getLong("postDate"));
         txtPostDateName.setText(date);
+
 
 
 
