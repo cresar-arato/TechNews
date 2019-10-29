@@ -48,13 +48,13 @@
         <EditText
             android:id="@+id/postDescription"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_below="@+id/postTitle"
-            android:background="@drawable/inputfield_style"
-            android:textColor="@android:color/black"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:hint="Description Here" />
+            android:layout_marginBottom="100dp"
+            android:background="@drawable/inputfield_style"
+            android:hint="Description Here"
+            android:textColor="@android:color/black" />
 
         <Button
             android:id="@+id/btnUploadPost"
@@ -79,6 +79,7 @@
             android:layout_marginBottom="10dp" />
 
         <TextView
+            android:id="@+id/viewPost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -86,7 +87,6 @@
             android:layout_marginRight="6dp"
             android:layout_marginBottom="20dp"
             android:text="Lihat Postingan"
-            android:id="@+id/viewPost"
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />

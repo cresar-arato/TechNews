@@ -25,6 +25,7 @@ import java.util.List;
 
 import id.univmulia.technews.Activities.CreatePostActivity;
 import id.univmulia.technews.Activities.DetailPostActivity;
+import id.univmulia.technews.Activities.LoginActivity;
 import id.univmulia.technews.Activities.PostActivity;
 import id.univmulia.technews.Models.Post;
 import id.univmulia.technews.R;
@@ -51,12 +52,27 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyviewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyviewHolder holder, final int position) {
 
         holder.TvTitle.setText(mData.get(position).getTitle());
         Glide.with(mContext).load(mData.get(position).getPicture()).into(holder.imgPost);
         Glide.with(mContext).load(mData.get(position).getUserPhoto()).circleCrop().into(holder.imgPostProfile);
 
+        holder.TvTitle.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                listener.delPost(mData.get(position),position);
+                return true;
+            }
+        });
+
+        holder.imgPostProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent loginAct = new Intent(mContext, LoginActivity.class);
+                mContext.startActivity(loginAct);
+            }
+        });
     }
 
 
