@@ -32,11 +32,12 @@
         android:textSize="20sp" />
 
     <ImageView
-        android:id="@+id/posted_img_profile"
+        android:id="@+id/posted_img_delete"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/ic_kitazawa_hagumi" />
+        app:srcCompat="@drawable/ic_delete"
+        tools:ignore="VectorDrawableCompat" />
 
 </RelativeLayout>

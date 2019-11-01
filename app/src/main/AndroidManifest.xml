@@ -12,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LoginActivity"/>
+        <service
+            android:name=".MyFirebaseInstanceIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+        <activity android:name=".Activities.LoginActivity" />
         <activity android:name=".Activities.DetailPostActivity" />
         <activity android:name=".Activities.PostActivity" />
         <activity android:name=".Activities.CreatePostActivity" />

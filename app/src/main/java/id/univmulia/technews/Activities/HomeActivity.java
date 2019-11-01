@@ -10,6 +10,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,12 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     ImageView userPhoto;
+
+    //mematikan tombol kembali
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Silahkan Tekan Tombol Keluar", Toast.LENGTH_SHORT).show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +61,12 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mAuth.signOut();
-                /*Intent gotoLoginActIntent = new Intent(getApplicationContext(),LoginActivity.class);
-                startActivity(gotoLoginActIntent);*/
+                Intent gotoLoginActIntent = new Intent(getApplicationContext(),LoginActivity.class);
+                gotoLoginActIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                gotoLoginActIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                gotoLoginActIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                gotoLoginActIntent.putExtra("KELUAR",true);
+                startActivity(gotoLoginActIntent);
                 finish();
             }
         });

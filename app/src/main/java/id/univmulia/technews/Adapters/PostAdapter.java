@@ -4,28 +4,19 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.storage.FirebaseStorage;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
-import id.univmulia.technews.Activities.CreatePostActivity;
 import id.univmulia.technews.Activities.DetailPostActivity;
-import id.univmulia.technews.Activities.LoginActivity;
 import id.univmulia.technews.Activities.PostActivity;
 import id.univmulia.technews.Models.Post;
 import id.univmulia.technews.R;
@@ -56,21 +47,40 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
 
         holder.TvTitle.setText(mData.get(position).getTitle());
         Glide.with(mContext).load(mData.get(position).getPicture()).into(holder.imgPost);
-        Glide.with(mContext).load(mData.get(position).getUserPhoto()).circleCrop().into(holder.imgPostProfile);
 
-        holder.TvTitle.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                listener.delPost(mData.get(position),position);
-                return true;
-            }
-        });
 
-        holder.imgPostProfile.setOnClickListener(new View.OnClickListener() {
+        holder.imgPostDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent loginAct = new Intent(mContext, LoginActivity.class);
-                mContext.startActivity(loginAct);
+
+                final Dialog dialog = new Dialog(mContext);
+                dialog.setContentView(R.layout.dialog_lihat);
+                dialog.setTitle("Dialog");
+                dialog.show();
+
+                Button yesButton = dialog.findViewById(R.id.btn_del_yes);
+                Button noButton = dialog.findViewById(R.id.btn_del_no);
+
+                //apabila tombol Hapus/Yes diklik
+                yesButton.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                                listener.delPost(mData.get(position),position);
+                            }
+                        }
+                );
+
+                //apabila tombol No/Tidak diklik
+                noButton.setOnClickListener(
+                        new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                dialog.dismiss();
+                            }
+                        }
+                );
             }
         });
     }
@@ -85,14 +95,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
 
         TextView TvTitle;
         ImageView imgPost;
-        ImageView imgPostProfile;
+        ImageView imgPostDelete;
 
         public MyviewHolder(@NonNull View itemView) {
             super(itemView);
 
             TvTitle = itemView.findViewById(R.id.posted_title);
             imgPost = itemView.findViewById(R.id.posted_img);
-            imgPostProfile = itemView.findViewById(R.id.posted_img_profile);
+            imgPostDelete = itemView.findViewById(R.id.posted_img_delete);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -33,7 +33,8 @@ public class DetailPostActivity extends AppCompatActivity {
 
         //set statusbar jadi transparan ke postingan kita
         Window w = getWindow();
-        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+        /*w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);*/
+
 
         //deklarasi
         imgPost = findViewById(R.id.post_detail_image);
@@ -71,8 +72,7 @@ public class DetailPostActivity extends AppCompatActivity {
     private String timestampToString(long time){
         Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
         calendar.setTimeInMillis(time);
-        String date = DateFormat.format("dd-MM-yyyy",calendar).toString();
-        /*String date = DateFormat.format("dd.MM.yyyy",calendar).toString();*/
+        String date = DateFormat.format("dd-MM-yyyy HH:mm",calendar).toString();
         return date;
     }
 }

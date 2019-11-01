@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@drawable/dialog_styles"
-    android:elevation="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:gravity="center"
-    android:layout_margin="20dp"
     android:orientation="vertical"
     android:padding="30dp">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hapus Postingan Ini ?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20sp"
+        android:textColor="@android:color/black">
+    </TextView>
+
     <Button
-        android:id="@+id/btn_edit_post"
+        android:id="@+id/btn_del_yes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/btn_default"
-        android:text="Edit Post"
-        android:textColor="@android:color/white"
+        android:text="Hapus"
+        android:textColor="@color/cardview_light_background"
         android:textSize="16sp"
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btn_delete_post"
+        android:id="@+id/btn_del_no"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:background="@drawable/btn_default"
-        android:text="Delete Post"
-        android:textColor="@android:color/white"
+        android:text="Tidak"
+        android:textColor="@color/cardview_light_background"
         android:textSize="16sp" />
 
 </LinearLayout>

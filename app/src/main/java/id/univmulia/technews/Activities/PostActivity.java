@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -35,15 +36,14 @@ public class PostActivity extends AppCompatActivity  {
     private List<Post> mPost;
     private PostAdapter mAdapter;
 
-    //buat klik kembali
-    private static final int TIME_INTERVAL = 1000;
-    private long mBackPressed;
-
-    //keluat aplikasi
+    //menuju HomeActivity
     @Override
     public void onBackPressed() {
+        Intent home = new Intent(PostActivity.this, HomeActivity.class);
+        startActivity(home);
         finish();
     }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
@@ -51,7 +51,7 @@ public class PostActivity extends AppCompatActivity  {
         //set statusbar jadi transparan ke postingan kita
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        /*w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);*/
+        w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
         mRecyclerView = findViewById(R.id.rv_postingan);
         mRecyclerView.setHasFixedSize(true);
@@ -94,6 +94,7 @@ public class PostActivity extends AppCompatActivity  {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(PostActivity.this,"Berhasil dihapus", Toast.LENGTH_LONG).show();
+                    recreate();
                 }
             });
 

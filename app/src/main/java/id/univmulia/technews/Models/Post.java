@@ -2,7 +2,6 @@ package id.univmulia.technews.Models;
 
 import com.google.firebase.database.ServerValue;
 
-
 public class Post {
 
     private String Key;
