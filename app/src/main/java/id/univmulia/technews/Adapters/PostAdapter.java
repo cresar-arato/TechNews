@@ -68,6 +68,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyviewHolder> 
                             public void onClick(View view) {
                                 dialog.dismiss();
                                 listener.delPost(mData.get(position),position);
+                                /*notifyDataSetChanged();*/
+                                notifyItemRemoved(position);
                             }
                         }
                 );

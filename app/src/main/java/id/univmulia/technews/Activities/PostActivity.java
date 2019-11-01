@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ import id.univmulia.technews.R;
 public class PostActivity extends AppCompatActivity  {
 
     private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLayoutManager;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
     private List<Post> mPost;
@@ -48,17 +51,36 @@ public class PostActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post);
 
+        //swipe untuk refresh
+        final SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                refreshData(); // your code
+                pullToRefresh.setRefreshing(false);
+            }
+        });
+
         //set statusbar jadi transparan ke postingan kita
         Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
+        //perubahan LinearLayoutManager
+        mLayoutManager = new LinearLayoutManager(PostActivity.this);
+        mLayoutManager.setReverseLayout(true);
+        mLayoutManager.setStackFromEnd(true);
+
+        //set layout dan adapter ke recylerview
         mRecyclerView = findViewById(R.id.rv_postingan);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+
+        /*mRecyclerView = findViewById(R.id.rv_postingan);
         mRecyclerView.setHasFixedSize(true);
 
-
         //set layout ke linear layout
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));*/
 
         mPost=new ArrayList<>();
 
@@ -84,6 +106,11 @@ public class PostActivity extends AppCompatActivity  {
             }
         });
     }
+
+    private void refreshData() {
+        recreate();
+    }
+
     public void delPost(Post post, final int position) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataref = database.getReference("Postingan");
