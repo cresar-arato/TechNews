@@ -66,7 +66,7 @@ public class PostActivity extends AppCompatActivity  {
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
 
-        //perubahan LinearLayoutManager
+        //perubahan LinearLayoutManager baru >>> lama
         mLayoutManager = new LinearLayoutManager(PostActivity.this);
         mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
@@ -75,12 +75,6 @@ public class PostActivity extends AppCompatActivity  {
         mRecyclerView = findViewById(R.id.rv_postingan);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
-
-        /*mRecyclerView = findViewById(R.id.rv_postingan);
-        mRecyclerView.setHasFixedSize(true);
-
-        //set layout ke linear layout
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));*/
 
         mPost=new ArrayList<>();
 

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "418028295873-hun5oukpc2b4dea4lnurbg741165msso.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "id.univmulia.technews",
+            "certificate_hash": "546c8173d9529a5da5899878ecc9110646120e0f"
+          }
+        },
+        {
           "client_id": "418028295873-55bvqbovutpnp2q91nk7f4kq2ghkcpbh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -28,9 +36,6 @@
         }
       ],
       "api_key": [
-        {
-          "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
-        },
         {
           "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
         }
@@ -68,9 +73,6 @@
         }
       ],
       "api_key": [
-        {
-          "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
-        },
         {
           "current_key": "AIzaSyBlQgqXJStbJzsTaZRndnayhb_MMkvhYTM"
         }

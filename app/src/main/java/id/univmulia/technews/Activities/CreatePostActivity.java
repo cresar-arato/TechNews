@@ -104,15 +104,28 @@ public class CreatePostActivity extends AppCompatActivity {
                                    String imageDownLink = uri.toString();
 
                                    //buat objek postingan
-                                   Post post = new Post(PostTitle.getText().toString(),
-                                                        PostDescription.getText().toString(),
-                                                        imageDownLink,
-                                                        currentUser.getUid(),
-                                                        currentUser.getDisplayName(),
-                                                        currentUser.getPhotoUrl().toString());
+                                   //cek apakah user memiliki foto
+                                   if(currentUser.getPhotoUrl()!=null){
+                                       Post post = new Post(PostTitle.getText().toString(),
+                                               PostDescription.getText().toString(),
+                                               imageDownLink,
+                                               currentUser.getUid(),
+                                               currentUser.getDisplayName(),
+                                               currentUser.getPhotoUrl().toString());
+                                       //tambahkan postingan
+                                       addPost(post);
 
-                                   //tambahkan postingan
-                                   addPost(post);
+                                   }
+                                   else {
+                                       Post post = new Post(PostTitle.getText().toString(),
+                                               PostDescription.getText().toString(),
+                                               imageDownLink,
+                                               currentUser.getUid(),
+                                               currentUser.getDisplayName(),
+                                               null);
+                                       //tambahkan postingan
+                                       addPost(post);
+                                   }
                                }
                            }).addOnFailureListener(new OnFailureListener() {
                                @Override

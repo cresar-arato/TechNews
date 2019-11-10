@@ -107,7 +107,14 @@ public class RegisterActivity extends AppCompatActivity {
                             // akun berhasil dibuat
                             showMessage("Akun Berhasil dibuat");
                             //setelah buat akun, kita perlu update foto dan namanya
-                            UpdateUserInfo(name,pickedImgUri,mAuth.getCurrentUser());
+                            //cek dulu apakah user mengupload fotonya  atau tidak
+                            if(pickedImgUri !=null){
+                                UpdateUserInfo(name,pickedImgUri,mAuth.getCurrentUser());
+
+                            }else
+                                UpdateUserInfoNoPhoto(name,mAuth.getCurrentUser());
+
+
                         }
                         else{
                             // akun gagal dibuat
@@ -153,6 +160,26 @@ public class RegisterActivity extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    //update nama saja (jika user tidak memasukkan foto)
+    private void UpdateUserInfoNoPhoto(final String name, final FirebaseUser currentUser) {
+        //kita panggil ini jika user tidak mengupload fotonya kefirebase
+                        UserProfileChangeRequest profileupdate = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(name)
+                                .build();
+
+                        currentUser.updateProfile(profileupdate)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        if (task.isSuccessful()){
+                                            //info user berhasil diperbaharui
+                                            showMessage("Register Complete");
+                                            updateUI();
+                                        }
+                                    }
+                                });
     }
 
     private void updateUI() {

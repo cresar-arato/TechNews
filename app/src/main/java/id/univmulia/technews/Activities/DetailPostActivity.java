@@ -1,14 +1,9 @@
 package id.univmulia.technews.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActionBar;
 import android.os.Bundle;
 import android.text.format.DateFormat;
-import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
@@ -20,8 +15,6 @@ import java.util.Locale;
 import id.univmulia.technews.R;
 
 public class DetailPostActivity extends AppCompatActivity {
-
-    FirebaseUser currentUser;
 
     ImageView imgPost,imgUserPost;
     TextView txtPostDesc, txtPostDateName, txtPostTitle, txtPostUserName;
@@ -54,7 +47,14 @@ public class DetailPostActivity extends AppCompatActivity {
         txtPostTitle.setText(postTitle);
 
         String userpostImage = getIntent().getExtras().getString("userPhoto");
-        Glide.with(this).load(userpostImage).circleCrop().into(imgUserPost);
+        //cek jika user memiliki foto atau tidak !!
+        if (userpostImage !=null){
+            Glide.with(this).load(userpostImage).circleCrop().into(imgUserPost);
+        }
+        else{
+            Glide.with(this).load(R.drawable.ic_kitazawa_hagumi).circleCrop().into(imgUserPost);
+        }
+
 
         String postUsername = getIntent().getExtras().getString("userName");
         txtPostUserName.setText(postUsername);

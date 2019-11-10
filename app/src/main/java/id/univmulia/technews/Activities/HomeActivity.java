@@ -55,7 +55,10 @@ public class HomeActivity extends AppCompatActivity {
 
         //pake glide buat load photo user
         //pertama impor library
-        Glide.with(this).load(currentUser.getPhotoUrl()).circleCrop().into(userPhoto);
+        if (currentUser.getPhotoUrl() !=null){
+            Glide.with(this).load(currentUser.getPhotoUrl()).circleCrop().into(userPhoto);
+        }else
+        Glide.with(this).load(R.drawable.ic_kitazawa_hagumi).circleCrop().into(userPhoto);
 
         btnKeluar.setOnClickListener(new View.OnClickListener() {
             @Override
